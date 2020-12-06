@@ -3,58 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden Leaf Library</title>
+    <title>Home - Hidden Leaf Library</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <ul class="nav justify-content-end first-navbar">
-          <li class="nav-item">
-            <a class="nav-link nav-level1" href="logreg.php">Login/Register</a>
-          </li>
-        </ul>
-        
-        <nav class="navbar navbar-expand-lg navbar-dark">
-          <a class="navbar-brand" href="index.html">
-              <h1>Hidden Leaf Library</h1>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            
-          <div class="collapse navbar-collapse justify-content-end mt-1" id="navbarSupportedContent">
-            <form class="form-inline mt-2">
-              <ul class="nav justify-content-center">
-
-                <li class="nav-item">
-                  <a class="nav-link nav-level1" href="#">Collection</a>
-                </li>
-
-                <li class="nav-item">
-                  <div class="btn-group dropdown">
-                    <button type="button" class="btn dropdown-toggle nav-level1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Services
-                    </button>
-                  <div class="dropdown-menu" style="background-color: black">
-                      <!-- Dropdown menu links -->
-                      <a class="dropdown-item nav-level1" href="#">Request Purchase</a>
-                      <a class="dropdown-item nav-level1" href="#">Research & Homework Help</a>
-                      <a class="dropdown-item nav-level1" href="#">Book Discussion</a>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link nav-level1" href="#">About Us</a>
-                </li>
-              </ul>
-            </form>
-          </div>
-        </nav>
-    </header>
+    <?php 
+      include "navbar.php";
+    ?>
     
     <!-- Content-->
     <div class="container mt-3">
@@ -195,7 +152,7 @@
 
     <!-- Footer -->
     <?php 
-      include "footer.php"
+      include "footer.php";
     ?>
 
     <!-- Back To Top Button -->
