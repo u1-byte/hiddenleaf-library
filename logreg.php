@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    include "register.php";
+    include "login.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +35,7 @@
                         <h3 class="mb-0 my-2">Login Form</h3>
                     </div>
                     <div class="card-body">
-                        <form class="form" role="form" autocomplete="off" method="POST" action="login.php">
+                        <form class="form" role="form" autocomplete="off" method="POST" action="">
                             <div class="form-group">
                                 <label for="username">Card ID</label>
                                 <input type="text" name="card_id" class="form-control" id="card_id" placeholder="Input your library card ID" required="">
@@ -52,7 +58,7 @@
                     </div>
                     <div class="card-body">
                         
-                        <form class="form" role="form" autocomplete="off" method="POST" action="register.php">
+                        <form class="form" role="form" autocomplete="off" method="POST" action="">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Input your email (email@mail.com)" required="">

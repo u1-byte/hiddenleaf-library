@@ -10,6 +10,7 @@
 
 <body>
     <?php 
+      session_start();
       include "navbar.php";
     ?>
     
@@ -18,62 +19,59 @@
 
       <!-- Jumbotron -->
       <div class="banner container-md row justify-content-center">
-        <div class="col">
-            <!-- Jumbotron Carousel -->
-              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="img/carousel.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block bx">
-                      <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. In repellendus odit laborum voluptatibus cum? Totam adipisci tempora fugit cupiditate, eum reiciendis eaque ipsam. Veniam eligendi officia dignissimos! Iste, culpa quibusdam?</h5>
-                      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt eos, vero aperiam odit voluptatum veniam ducimus nobis enim. Harum at unde vero quas quae iure officia, illum quod maxime doloribus.</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/carousel.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block bx">
-                      <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. In repellendus odit laborum voluptatibus cum? Totam adipisci tempora fugit cupiditate, eum reiciendis eaque ipsam. Veniam eligendi officia dignissimos! Iste, culpa quibusdam?</h5>
-                      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt eos, vero aperiam odit voluptatum veniam ducimus nobis enim. Harum at unde vero quas quae iure officia, illum quod maxime doloribus.</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/carousel.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block bx">
-                      <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. In repellendus odit laborum voluptatibus cum? Totam adipisci tempora fugit cupiditate, eum reiciendis eaque ipsam. Veniam eligendi officia dignissimos! Iste, culpa quibusdam?</h5>
-                      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt eos, vero aperiam odit voluptatum veniam ducimus nobis enim. Harum at unde vero quas quae iure officia, illum quod maxime doloribus.</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/carousel.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block bx">
-                      <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. In repellendus odit laborum voluptatibus cum? Totam adipisci tempora fugit cupiditate, eum reiciendis eaque ipsam. Veniam eligendi officia dignissimos! Iste, culpa quibusdam?</h5>
-                      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt eos, vero aperiam odit voluptatum veniam ducimus nobis enim. Harum at unde vero quas quae iure officia, illum quod maxime doloribus.</p>
-                    </div>
+          <!-- Jumbotron Carousel -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="img/carousel.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block bx">
+                    <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. In repellendus odit laborum voluptatibus cum? Totam adipisci tempora fugit cupiditate, eum reiciendis eaque ipsam. Veniam eligendi officia dignissimos! Iste, culpa quibusdam?</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt eos, vero aperiam odit voluptatum veniam ducimus nobis enim. Harum at unde vero quas quae iure officia, illum quod maxime doloribus.</p>
                   </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
+                <div class="carousel-item">
+                  <img src="img/carousel.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block bx">
+                    <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. In repellendus odit laborum voluptatibus cum? Totam adipisci tempora fugit cupiditate, eum reiciendis eaque ipsam. Veniam eligendi officia dignissimos! Iste, culpa quibusdam?</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt eos, vero aperiam odit voluptatum veniam ducimus nobis enim. Harum at unde vero quas quae iure officia, illum quod maxime doloribus.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="img/carousel.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block bx">
+                    <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. In repellendus odit laborum voluptatibus cum? Totam adipisci tempora fugit cupiditate, eum reiciendis eaque ipsam. Veniam eligendi officia dignissimos! Iste, culpa quibusdam?</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt eos, vero aperiam odit voluptatum veniam ducimus nobis enim. Harum at unde vero quas quae iure officia, illum quod maxime doloribus.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="img/carousel.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block bx">
+                    <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. In repellendus odit laborum voluptatibus cum? Totam adipisci tempora fugit cupiditate, eum reiciendis eaque ipsam. Veniam eligendi officia dignissimos! Iste, culpa quibusdam?</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt eos, vero aperiam odit voluptatum veniam ducimus nobis enim. Harum at unde vero quas quae iure officia, illum quod maxime doloribus.</p>
+                  </div>
+                </div>
               </div>
-        </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
       </div>
             
       <!-- Purpose -->
       <div class="container-md row mt-5 justify-content-center">
         <h2>Our Purpose</h2>
           <div class="card text-center cc">
-
             <div class="card-body">
               <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, modi ea. Laudantium placeat ut repellat laborum, iure, illo nesciunt adipisci nam consequatur a ipsa sed laboriosam repudiandae! Excepturi, quam eligendi!</h5>
               <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, earum nesciunt reiciendis ea necessitatibus laudantium molestiae, quia numquam repellat a qui quibusdam ex amet ab ipsa, soluta quisquam inventore nihil!</p>
@@ -123,7 +121,6 @@
           <div class="card cc">
             <div class="card-body">
               <div class="row">
-
                 <div class="col-sm">
                   <h5>
                     Contact
@@ -141,7 +138,6 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos laboriosam aliquam deleniti? Inventore quam reiciendis sunt ea, neque vero eum in nam repellendus dolore suscipit aliquam eos dolorum! Consectetur, eaque.
                   </p>
                 </div>
-
               </div>             
             </div>
           </div>

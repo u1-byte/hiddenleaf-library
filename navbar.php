@@ -1,10 +1,29 @@
     <!-- Header & Navigation -->
     <header>
-        <ul class="nav justify-content-end first-navbar">
-          <li class="nav-item">
-            <a class="nav-link nav-level1" href="logreg.php">Login/Register</a>
-          </li>
-        </ul>
+      <?php
+        if (isset($_SESSION['login'])){
+          echo '
+          <ul class="nav justify-content-end first-navbar">
+            <li class="nav-item">
+              <a class="nav-link nav-level1" href="logreg.php">' . $_SESSION["fname"] . '</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-level1" href="logout.php">Logout</a>
+            </li>
+          </ul>';
+        }
+
+        else {
+          echo '
+          <ul class="nav justify-content-end first-navbar">
+            <li class="nav-item">
+              <a class="nav-link nav-level1" href="logreg.php">Login/Register</a>
+            </li>
+          </ul>';
+        }
+        
+      ?>
+        
         
         <nav class="navbar navbar-expand-lg navbar-dark">
           <a class="navbar-brand" href="index.php">
@@ -29,9 +48,9 @@
                     </button>
                   <div class="dropdown-menu" style="background-color: black">
                       <!-- Dropdown menu links -->
-                      <a class="dropdown-item nav-level1" href="#">Request Purchase</a>
-                      <a class="dropdown-item nav-level1" href="#">Research & Homework Help</a>
-                      <a class="dropdown-item nav-level1" href="#">Book Discussion</a>
+                      <a class="dropdown-item nav-level1" href="requestForm.php">Request Purchase</a>
+                      <a class="dropdown-item nav-level1" href="#">Research Help</a>
+                      <a class="dropdown-item nav-level1" href="#">Book Workshop</a>
                     </div>
                   </div>
                 </li>

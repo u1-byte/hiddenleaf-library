@@ -1,46 +1,61 @@
 <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
 <?php
-include "index.php"; 
-if(isset($_POST['register'])){
-    include 'koneksi.php';
+    if(isset($_POST['register'])){
+        include 'koneksi.php';
 
-    $uname = $_POST['username'];
-    $pass = $_POST['password'];
-    $nim = $_POST['nim'];
-    $nama = $_POST['nama'];
-    $alamat = $_POST['alamat'];
-    $level = 2;
+        $email = $_POST['email'];
+        $card = $_POST['card_id'];
+        $pass = $_POST['password'];
+        $fname = $_POST['fullname'];
+        $address = $_POST['address'];
+        $level = 2;
+        $status = 2;
+        $hashed = password_hash($pass, PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO mahasiswa (username, password, nim, nama, alamat, level) VALUES (
-        '$uname',
-        '$pass',
-        '$nim',
-        '$nama',
-        '$alamat',
-        '$level')";
+        $same_card = mysqli_query($con, "SELECT * FROM user WHERE card_id = $card");
+        if (mysqli_num_rows($same_card) === 1){
+            echo "<div></div>
+                <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Gagal regis, ID card Anda sudah digunakan!'
+                });
+                </script>";
+        }
 
-    if (mysqli_query($koneksi, $query)){
-        echo "<script>
+        else{
+            $query_add = "INSERT INTO user (card_id, password, email, fullname, address, level, status) VALUES (
+                '$card',
+                '$hashed',
+                '$email',
+                '$fname',
+                '$address',
+                '$level',
+                '$status')";
+    
+            if (mysqli_query($con, $query_add)){
+                echo "<div></div>
+                <script>
                 Swal.fire({
                     icon: 'success',
                     title: 'Registrasi Sukses!',
-                    text: 'Silakan login untuk melanjutkan!'
-                }).then(function() {
-                    window.location='index.php';
+                    text: 'Silakan tunggu verifikasi dari admin!'
                 });
                 </script>";
+            }
+            else {
+                echo "<div></div>
+                <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Gagal regis, silakan coba lagi!'
+                });
+                </script>";
+            };
+        }
+        
     }
-    else {
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal!',
-            text: 'Gagal regis, silakan coba lagi!'
-        }).then(function() {
-            window.location='index.php';
-        });
-        </script>";
-    };
-}
 
 ?>
