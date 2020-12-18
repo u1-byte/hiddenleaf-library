@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    include "koneksi.php";
+    if ($_SESSION['login'] == False){
+        header("Location: logreg.php");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +19,6 @@
 
 <body>
     <?php 
-      session_start();
       include "navbar.php";
     ?>
     
@@ -21,7 +29,7 @@
                     <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Collapsible Group Item #1
+                        Berdasarkan Kategori
                         </button>
                     </h2>
                     </div>
@@ -29,13 +37,9 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action active">
-                                Cras justo odio
-                            </a>
                             <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                             <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
                             <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>
                         </div>
                     </div>
                     </div>
@@ -45,31 +49,21 @@
                     <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Collapsible Group Item #2
+                        Berdasarkan Tahun Terbit
                         </button>
                     </h2>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                        </div>
                     </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Collapsible Group Item #3
-                        </button>
-                    </h2>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -84,19 +78,21 @@
                 </div>
 
                 <?php
+                    $user_id = $_SESSION['id'];
+
                     if (isset($_POST['col_mode'])){
-                        //delete borrow record
-                        
+                        $query = mysqli_query($con, "SELECT MAX(id) FROM borrow_book");
+                        $borrow_id = mysqli_fetch_row($query);
+                        mysqli_query($con, "DELETE FROM borrow_book WHERE id='$borrow_id[0]' AND user_id='$user_id'");
+                        $_SESSION['borrow'] = NULL;
                     }
 
-                    if (!isset($_POST['bor_mode']) || isset($_POST['col_mode'])){
-                        echo '
-                        <form class="form-inline" method="POST" action="">
-                            <input class="btn btn-info form-control mr-sm-2" type="submit" name="bor_mode" value="I want to borrow some books">
-                        </form>';
+                    if (isset($_POST['bor_mode'])){
+                        mysqli_query($con, "INSERT INTO borrow_book (user_id) VALUES ('$user_id')");
+                        $_SESSION['borrow'] = True;
                     }
 
-                    elseif(isset($_POST['bor_mode'])){
+                    if(isset($_SESSION['borrow'])){
                         echo '
                         <div class="form-inline justify-content-end">
                             <button id="cart_btn" class="btn btn-primary mr-sm-2" role="button" onclick="showCart()">Check Cart</button>
@@ -106,36 +102,34 @@
                         </div>';
                     }
 
+                    else{
+                        echo '
+                        <div class="form-inline justify-content-end">
+                            <form class="form-inline" method="POST" action="">
+                                <input class="btn btn-success form-control mr-sm-2" type="submit" name="bor_mode" value="Pinjam Buku">
+                            </form>
+                            <form class="form-inline" method="POST" action="historyCollection.php">
+                                <input class="btn btn-info form-control mr-sm-2" type="submit" name="history" value="Riwayat Peminjaman">
+                            </form>
+                        </div>';
+                    }
+
                 ?>
                 
             </nav>
 
             <div class="row">
-                <div class="col-md-3">
-                    <div class="card py-2 h-100">
-                    <img src="img/5294.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Rp299.000</h5>
-                        <p class="card-text">Sony MDR-XB55AP Headphone In-Ear EXTRA BASS - Black</p>
-                        <a href="#" class="btn btn-primary">Purchase</a>
-                    </div>
-                    </div>
-                </div>
+                <?php 
+                    include "readCollection.php";
+                ?>
             </div>
             
         </div>
 
         <div id="cart_block" class="col-2">
-            <div class="col-sm">
-                <div class="card" style="width: auto;">
-                    <img src="img/5294.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Rp2.999.000</h5>
-                        <p class="card-text">Sony WF-1000XM3 Truly Wireless Handsfree Noise Cancelling Battery up to 24h - Black SONY TWS</p>
-                        <a href="#" class="btn btn-primary">Purchase</a>
-                    </div>
-                </div>
-            </div>
+           <?php
+                include "cart.php";
+           ?>
         </div>
 
     </div>
