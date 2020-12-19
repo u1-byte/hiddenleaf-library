@@ -32,8 +32,6 @@
                     icon: 'success',
                     title: 'Request Sukses!',
                     text: 'Terimakasih atas sarannya! Silakan tunggu persetujuan admin!'
-                }).then(function() {
-                    window.location='requestForm.php';
                 });
                 </script>";
                 exit;

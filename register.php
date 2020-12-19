@@ -19,7 +19,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal!',
-                    text: 'Gagal regis, ID card Anda sudah digunakan!'
+                    text: 'Gagal regis, ID card sudah digunakan!'
                 });
                 </script>";
         }
@@ -40,7 +40,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Registrasi Sukses!',
-                    text: 'Silakan tunggu verifikasi dari admin!'
+                    text: 'Silakan kontak admin untuk verifikasi!'
                 });
                 </script>";
             }

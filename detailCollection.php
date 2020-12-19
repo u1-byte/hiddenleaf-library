@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <?php 
+    <?php
         include "navbar.php";
 
         if (!empty($_GET['id'])){

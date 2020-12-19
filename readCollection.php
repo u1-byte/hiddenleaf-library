@@ -1,3 +1,4 @@
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
 <?php
     include "koneksi.php";
 
@@ -10,8 +11,51 @@
         header("Location: collection.php");
         exit;
     }
-    
-    $query = "SELECT * FROM book WHERE status = 2";
+
+    if(!empty($_GET['display'])){
+        $book_id = $_GET['display'];
+        $query = "UPDATE book SET status = 1 WHERE id='$book_id'";
+        if(mysqli_query($con, $query)){
+            echo "<div></div>
+            <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: 'Buku berhasil ditampilkan!'
+            }).then(function() {
+                window.location='collection.php';
+            });
+            </script>";
+            exit;
+        }
+    }
+
+    if(!empty($_GET['remove'])){
+        $book_id = $_GET['remove'];
+        $query = "UPDATE book SET status = 2 WHERE id='$book_id'";
+        if(mysqli_query($con, $query)){
+            echo "<div></div>
+            <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: 'Buku berhasil dinonaktifkan!'
+            }).then(function() {
+                window.location='collection.php';
+            });
+            </script>";
+            exit;
+        }
+    }
+
+    if($_SESSION['undisplay'] == True){
+        $query = "SELECT * FROM book WHERE status = 2";
+    }
+
+    else {
+        $query = "SELECT * FROM book WHERE status = 1";
+    }
+
     $res = mysqli_query($con, $query);
 
     if (mysqli_num_rows($res) >= 1) {
@@ -27,13 +71,20 @@
                         <p class="card-text">Kategori '. $data[5] .'</p>';
 
                     if(isset($_SESSION['borrow'])){
-                        echo '
-                        <a class="btn btn-success btn-block" name="add_cart" href="readCollection.php?id=' . $data[0] . '">Add to Cart</a>';
+                        echo '<a class="btn btn-success btn-block" name="add_cart" href="readCollection.php?id=' . $data[0] . '">Add to Cart</a>';
                     }
 
-                        echo 
-                        '<a target="__blank" href="detailCollection.php?id=' . $data[0] . '" class="btn btn-warning btn-block">Detail</a>
-                    </div>
+                    if($_SESSION['level'] == 1 && $_SESSION['undisplay'] == True){
+                        echo '<a class="btn btn-success btn-block" name="display" href="readCollection.php?display=' . $data[0] . '">Display</a>';
+                    }
+
+                    elseif ($_SESSION['level'] == 1 && $_SESSION['undisplay'] == False){
+                        echo '<a class="btn btn-danger btn-block" name="remove" href="readCollection.php?remove=' . $data[0] . '">Remove</a>';
+                    }
+
+                        echo '<a target="__blank" href="detailCollection.php?id=' . $data[0] . '" class="btn btn-warning btn-block">Detail</a>';
+
+            echo '</div>
                 </div>
             </div>';
         }

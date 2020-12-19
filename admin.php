@@ -1,3 +1,17 @@
+<?php
+  session_start();
+
+  if ($_SESSION['login'] == False){
+    header("Location: logreg.php");
+    exit;
+  }
+
+  if($_SESSION['level'] != 1){
+    header("Location: index.php");
+    exit;
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,91 +23,11 @@
 </head>
 
 <body>
-    <?php 
-      session_start();
+    <?php
       include "navbar.php";
+
+      include "adminBar.php";
     ?>
-    
-    <!-- Content-->
-    <div class="container mt-3">
-            
-      <!-- Purpose -->
-      <div class="container-md row mt-5 justify-content-center">
-        <h2>Our Purpose</h2>
-          <div class="card text-center cc">
-            <div class="card-body">
-              <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, modi ea. Laudantium placeat ut repellat laborum, iure, illo nesciunt adipisci nam consequatur a ipsa sed laboriosam repudiandae! Excepturi, quam eligendi!</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, earum nesciunt reiciendis ea necessitatibus laudantium molestiae, quia numquam repellat a qui quibusdam ex amet ab ipsa, soluta quisquam inventore nihil!</p>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id temporibus officia consectetur dicta vitae rerum maxime vero sapiente, facere numquam fuga, expedita a blanditiis incidunt quas. Ea in tenetur explicabo.</p>
-              <a href="collection.php" class="btn go">Choose Collection</a>
-            </div>
-
-          </div> 
-      </div>
-
-      <!-- Services -->
-      <div class="container-md row mt-5 justify-content-center">    
-
-        <h2>Our Services</h2>
-          <div class="card-deck">
-            
-              <a class="card cc" href="#">
-                <img src="img/5294.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, velit repellat vel sit distinctio corrupti quibusdam minus quisquam reiciendis quis sequi pariatur, debitis dolor quasi asperiores alias exercitationem voluptates dolores.</h5>
-                </div>
-              </a>
-             
-              <a class="card cc" href="#">
-                <img src="img/5294.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, velit repellat vel sit distinctio corrupti quibusdam minus quisquam reiciendis quis sequi pariatur, debitis dolor quasi asperiores alias exercitationem voluptates dolores.</h5>
-                </div>
-              </a>
-  
-              <a class="card cc" href="#">
-                <img src="img/5294.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, velit repellat vel sit distinctio corrupti quibusdam minus quisquam reiciendis quis sequi pariatur, debitis dolor quasi asperiores alias exercitationem voluptates dolores.</h5>
-                </div>
-              </a>
-
-          </div>
-
-      </div>
-
-      <!-- About -->
-      <div class="container-md row mt-5 justify-content-center">
-        
-        <h2>About Us</h2>
-
-          <div class="card cc">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm">
-                  <h5>
-                    Contact
-                  </h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos laboriosam aliquam deleniti? Inventore quam reiciendis sunt ea, neque vero eum in nam repellendus dolore suscipit aliquam eos dolorum! Consectetur, eaque.
-                  </p>
-                </div>
-    
-                <div class="col-sm">
-                  <h5>
-                    Location & Hours
-                  </h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos laboriosam aliquam deleniti? Inventore quam reiciendis sunt ea, neque vero eum in nam repellendus dolore suscipit aliquam eos dolorum! Consectetur, eaque.
-                  </p>
-                </div>
-              </div>             
-            </div>
-          </div>
-        
-      </div>
-
-    </div>
 
     <!-- Footer -->
     <?php 
