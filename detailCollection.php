@@ -41,9 +41,13 @@
                         <p class="card-text">Kategori       : '. $data[5] .'</p>
                         <p class="card-text">Deskripsi      : </p> 
                         <p class="card-text">'. $data[6] .'</p>
-                    </div>
-                    </div>
-                </div>';
+                    </div>';
+
+                    if($_SESSION['level'] == 1){
+                        echo '<a class="btn btn-outline-warning btn-block" name="display" href="addBook.php?edit=' . $data[0] . '">Edit</a>';
+                    }
+                    
+                echo '</div></div>';
             }
         }
 

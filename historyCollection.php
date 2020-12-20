@@ -75,6 +75,10 @@
                 </div>';
             }
         }
+
+        else {
+            echo '<h3>You dont have any borrow history yet.</h3>';
+        }
         echo '</div>';   
 
         include "footer.php";
